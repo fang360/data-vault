@@ -1,156 +1,100 @@
-# data-vault
--Implementation and verification of a data vault
+Certainly! Here's the provided information formatted in Markdown:
 
-This project has three files: dataVault.sql, staging.py, information.sql
-The first file creates a database and tables in SQL; 
-the second one extracts data and loads them into the SQL; 
-the third one creates tables for analysis.
+```markdown
+# Implementation and Verification of a Data Vault
 
--dataVault.sql
+This project involves the implementation and verification of a data vault system. It comprises three main components: `dataVault.sql`, `staging.py`, and `information.sql`. Each file serves a specific purpose in the overall process.
 
---Installation
-open the SQL Shell (psql), and type:
+## dataVault.sql
 
-cd 'LOCATION OF THE FILE/'
+This file sets up the database and necessary tables in SQL. To install and execute it:
 
-Make sure all "\" are changed into "/". When switch to the right folder, type:
+1. Open the SQL Shell (psql).
+2. Navigate to the directory where `dataVault.sql` is located.
+3. Execute the following command: `\i dataVault.sql`
 
-\i dataVault.sql
+This script creates the required tables for the staging and enterprise layers. It typically takes about 245 milliseconds to execute. Ensure that the SQL Shell remains open for later use with `information.sql`.
 
-to create the database and tables for the staging and enterprise layers.
+## staging.py
 
-It takes about 245 msec to execute this file.
+This Python script is responsible for extracting data and loading it into the SQL database. Before running the script, ensure the following folder structure:
 
-NOTE: Please don't close this shell, you will use it later for the information.sql.
-
--staging.py
-
-Before running the script, make sure the dataset is placed in a folder named data 
-and the staging.py file is in the code folder next to the data folder.
-
-The structure of the folders should look like this:
-
+```
 /parentFolder
-  |- code/
-    |- staging.py
-    |- dataVault.sql
-    |- information.sql
-  |- data/
-    |- VMData_Blinded
-    |- PreAutismData_Blinded
+|- code/
+   |- staging.py
+|- dataVault.sql
+|- information.sql
+|- data/
+   |- VMData_Blinded
+   |- PreAutismData_Blinded
+```
 
-NOTE: Keep the "_Blinded" in the file names!
+### Installation of Dependencies
 
--- Installation
-This script has used the libraries listed below:
-pandas, time, numpy, os, psycopg2, re, and hashlib
+Ensure the following libraries are installed using PyPI:
 
-if any of them is not installed, install it with PyPI:
+- `pandas`
+- `time`
+- `numpy`
+- `os`
+- `psycopg2`
+- `re`
+- `hashlib`
 
-˙os
-  pip install os-sys
+You can install these libraries using pip, for example: `pip install pandas`.
 
-˙psycopg2
-  pip install psycopg2
+### Running the Script
 
-˙re
-  pip install regex
+You can run the script using Spyder or the command line:
 
-˙hashlib
-  pip install hashlib
-
-˙time
-  pip install python-time
-
-˙pandas
-  pip install pandas
-
-˙numpy
-  pip install numpy
-
-The script is written in python3 and can only be run by python3.
-
-After installing all the libraries, run the file by spyder or cmd.
-(Or other ways you want to execute the Python script.)
-
-˙Spyder
-  Open Spyder, set the file path to the code folder, and open staging.py 
-  and press f5 to run the script
-
-˙cmd
-  Open the code folder, click the path bar 
-  ( A bar written the path next to the search on the top of a folder)
-  type cmd and click enter to execute the cmd 
-
-Now the cmd is supposed located in the code folder and run:
-
-python staging.py
-
-It takes 13'07" to complete.
-While running the script, it will print the file it's reading now, 
-there are 75 files in VMData_Blinded, and 20 files in PreAutismData_Blinded.
-
-NOTE: The html for in-code documentation is stored at
-THE PATH YOU STORE IT\SMD2022_Project\doc\docs\build\html\index.html
-
--information.sql
-
---Installation
-  Open the shell( psql) you used for executing the dataVault.sql, and type:
-
-  \i information.sql
-
-  It takes 16 secs 514 msec to create views for the business vault and information mart, 
-  and tables for information mart.
-
-
--A browser-based intuitive GUI for querying 
- This can be accomplished by using Metabase
-
---Installation
-  To run the Metabase, it needs Java JRE.
-  By running:
-
-  java -version
+- **Spyder**: Open Spyder, set the file path to the code folder, open `staging.py`, and press `F5` to run the script.
   
-  To check if Java is installed.
-  If it is not installed, download from this link:
-  https://adoptium.net/
+- **Command Line (cmd)**: Navigate to the code folder in the command prompt and run: `python staging.py`
 
-  Now, download the Metabase file from this link:
-  https://www.metabase.com/docs/latest/installation-and-operation/running-the-metabase-jar-file#2-download-metabase
+During execution, the script will display the file it's currently reading. There are 75 files in `VMData_Blinded` and 20 files in `PreAutismData_Blinded`.
 
-  Create a new directory(Metabase folder) and move the Metabase JAR into it. Open your terminal and location to the Metabase folder
+## information.sql
 
-  cd LOCATION OF THE METABASE FOLDER
+This SQL file creates views for the business vault and information mart, along with tables for the information mart. To install:
 
-  run:
+1. Open the SQL Shell (psql).
+2. Execute the following command: `\i information.sql`
 
-  java -jar metabase.jar
+This script typically takes 16 seconds and 514 milliseconds to execute. It creates necessary views and tables for the information layer.
 
-  Now you can access Metabase at http://localhost:3000
+## Browser-based GUI for Querying (Metabase)
 
-  You will need to create an account to use the Metabase, and after that connect the smdvault with the parameter below:
+This project utilizes Metabase for querying data through an intuitive GUI.
 
-  database type: PostgreSQL
-  display name: whatever you want
-  host: 127.0.0.1
-  port: 5432
-  user: smd
-  database name: smdvault
-  password: smd2022
-  schema: only
-  information <- Type yourself
+### Installation
 
---Access data
-  The seven questions that the information layer should support is created as views, named from question 1 to question 7,
-  it can be shown as tables and charts by clicking:
+Before running Metabase, ensure Java JRE is installed. You can check by running `java -version`. If not installed, download Java from [this link](https://adoptium.net/).
 
-  DATA > Browse data > display name( what you have named it) > question(1-7) > visualization
+To run Metabase:
 
-  You can also create a dashboard to demonstrate those charts or do extra analysis with queries with the fact and dimension tables.
+1. Download the Metabase JAR file from [here](https://www.metabase.com/docs/latest/installation-and-operation/running-the-metabase-jar-file#2-download-metabase).
+2. Create a new directory (Metabase folder) and move the Metabase JAR into it.
+3. Open your terminal and navigate to the Metabase folder.
+4. Run: `java -jar metabase.jar`
+5. Access Metabase at http://localhost:3000.
 
+### Accessing Data
 
-  NOTE: The result figures for question 1 to question 4 in the result folder are done by Metabase.
-  
+1. Create an account on Metabase.
+2. Connect the data vault with the following parameters:
+   - Database type: PostgreSQL
+   - Display name: Whatever you prefer
+   - Host: 127.0.0.1
+   - Port: 5432
+   - User: smd
+   - Database name: smdvault
+   - Password: smd2022
+   - Schema: information
 
+Once connected, you can access the data through the GUI. The seven questions supported by the information layer are created as views (question 1 to question 7), which can be displayed as tables and charts. Further analysis can be performed by creating dashboards or using queries with fact and dimension tables.
+
+**Note**: Result figures for question 1 to question 4 are stored in the result folder and are generated by Metabase.
+```
+
+This Markdown format can be directly pasted into a Markdown file for documentation purposes.
