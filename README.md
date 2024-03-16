@@ -16,7 +16,7 @@ This script creates the required tables for the staging and enterprise layers. I
 ## staging.py
 
 This Python script is responsible for extracting data and loading it into the SQL database. Before running the script, ensure the following folder structure:
-
+```
 /parentFolder
 |- code/
    |- staging.py
@@ -25,7 +25,7 @@ This Python script is responsible for extracting data and loading it into the SQ
 |- data/
    |- VMData_Blinded
    |- PreAutismData_Blinded
-
+```
 ### Installation of Dependencies
 
 Ensure the following libraries are installed using PyPI:
